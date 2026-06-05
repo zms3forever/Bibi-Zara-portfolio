@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bibi Zara | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables - Glowing Blue Theme */
+        :root {
+            --bg-color: #081b29;
+            --text-color: #ededed;
+            --card-bg: #0c2a3e;
+            --primary-color: #ededed;
+            --accent-color: #0ef;
+            --nav-bg: #0c2a3e;
+            --border-color: #1f3a47;
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f4f7f6;
+            --text-color: #333333;
+            --card-bg: #ffffff;
+            --primary-color: #2c3e50;
+            --accent-color: #0ef;
+            --nav-bg: #ffffff;
+            --border-color: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--nav-bg);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-decoration: none;
+            text-shadow: 0 0 10px var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 16px;
+            transition: .3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+            text-shadow: 0 0 10px var(--accent-color);
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle-btn {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 20px;
+            cursor: pointer;
+            margin-left: 25px;
+        }
+
+        /* Sections Styling */
+        section {
+            padding: 100px 20px 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+            position: relative;
+            color: var(--primary-color);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+            margin: 10px auto 0 auto;
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        /* Home/Hero Section */
+        #home {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 100vh;
+            padding-top: 120px;
+        }
+
+        .hero-text {
+            flex: 1;
+            padding-right: 50px;
+        }
+
+        .hero-text h1 {
+            font-size: 48px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .hero-text h2 {
+            font-size: 24px;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent-color);
+            box-shadow: 0 0 25px var(--accent-color), 0 0 50px var(--accent-color);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent-color);
+            color: #081b29;
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: 600;
+            box-shadow: 0 0 10px var(--accent-color);
+            transition: .3s;
+        }
+
+        .btn:hover {
+            box-shadow: 0 0 20px var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            margin-left: 15px;
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--accent-color);
+            color: #081b29;
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        /* Card Layout */
+        .card-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+            transition: .3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 0 15px var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            font-size: 22px;
+            color: var(--primary-color);
+        }
+
+        .card .sub-title {
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+
+        .card .date {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        .card ul {
+            list-style-position: inside;
+            padding-left: 5px;
+        }
+
+        .card ul li {
+            margin-bottom: 8px;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-category {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: .3s;
+        }
+
+        .skill-category:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px var(--accent-color);
+        }
+
+        .skill-category i {
+            font-size: 40px;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .skill-category h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background-color: var(--bg-color);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-info h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .contact-item i {
+            font-size: 20px;
+            color: var(--accent-color);
+            margin-right: 15px;
+            width: 25px;
+            text-align: center;
+            text-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .contact-item a, .contact-item span {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            font-size: 24px;
+            color: var(--text-color);
+            margin-right: 20px;
+            transition: .3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+            text-shadow: 0 0 10px var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: var(--nav-bg);
+            border-top: 1px solid var(--border-color);
+            margin-top: 6px;
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #home {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 100px;
+            }
+            .hero-text {
+                padding-right: 0;
+                margin-top: 30px;
+            }
+            .hero-text h1 {
+                font-size: 36px;
+            }
+            .nav-container {
+                padding: 15px;
+            }
+            nav ul li {
+                margin-left: 12px;
+            }
+            nav ul li a {
+                font-size: 14px;
+            }
+            .hero-image img {
+                width: 250px;
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">BZ.</a>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li>
+                        <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle Theme">
+                            <i class="fas fa-sun"></i>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="hero-text">
+            <h1>Hello! I am Bibi Zara</h1>
+            <h2>Teacher & Home Tutor</h2>
+            <p>
+                Motivated and detail-oriented IT graduate from Bano Qabil with hands-on knowledge of Python, Generative AI, and MS Office. With 5 years of professional teaching experience at Al-Falah School, Karachi, I have developed robust expertise in classroom management, effective communication, and enhanced student engagement using computer-aided tools and modern teaching styles.
+            </p>
+            <a href="#contact" class="btn">Hire Me</a>
+            <a href="Bibi Zara (508479) Resume.docx" class="btn btn-outline" download><i class="fas fa-download"></i> Download Resume</a>
+        </div>
+        <div class="hero-image">
+            <img src="IMG-20260605-WA0014.jpg" alt="Bibi Zara Profile Picture">
+        </div>
+    </section>
+
+    <hr style="border: 0; border-top: 1px solid var(--border-color); width: 80%; margin: 0 auto;">
+
+    <section id="experience">
+        <h2 class="section-title">Work Experience</h2>
+        <div class="card-container">
+            <div class="card">
+                <h3>Teacher</h3>
+                <div class="sub-title">Al-Falah School, Karachi</div>
+                <div class="date"><i class="far fa-calendar-alt"></i> 2020 – 2025</div>
+                <ul>
+                    <li>Managed classroom activities for students across multiple subjects, ensuring discipline and engagement.</li>
+                    <li>Maintained digital student records and prepared academic reports using MS Excel and MS Word.</li>
+                    <li>Utilized computer tools, educational videos, and presentations to enhance the learning experience.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <hr style="border: 0; border-top: 1px solid var(--border-color); width: 80%; margin: 0 auto;">
+
+    <section id="education">
+        <h2 class="section-title">Education & Certifications</h2>
+        <div class="card-container">
+            <div class="card">
+                <h3>Higher Secondary Certificate (Pre-Medical)</h3>
+                <div class="sub-title">Liaquat Government Girls College</div>
+                <div class="date"><i class="far fa-calendar-alt"></i> 2024 – 2025</div>
+            </div>
+            <div class="card">
+                <h3>Certification in Computer Information Technology</h3>
+                <div class="sub-title">Bano Qabil</div>
+                <div class="date"><i class="far fa-calendar-alt"></i> 2025 / 2026</div>
+            </div>
+        </div>
+    </section>
+
+    <hr style="border: 0; border-top: 1px solid var(--border-color); width: 80%; margin: 0 auto;">
+
+    <section id="skills">
+        <h2 class="section-title">My Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <i class="fas fa-code"></i>
+                <h3>Programming & Tech</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">GitHub</span>
+                    <span class="skill-tag">Generative AI Fundamentals</span>
+                    <span class="skill-tag">Internet Technologies</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Software Tools</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">MS Word</span>
+                    <span class="skill-tag">MS Excel</span>
+                    <span class="skill-tag">PowerPoint</span>
+                </div>
+            <div class="skill-category">
+                <i class="fas fa-users"></i>
+                <h3>Soft Skills</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Classroom Management</span>
+                    <span class="skill-tag">Communication</span>
+                    <span class="skill-tag">Time Management</span>
+                    <span class="skill-tag">Problem-Solving</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr style="border: 0; border-top: 1px solid var(--border-color); width: 80%; margin: 0 auto;">
+
+    <section id="contact">
+        <h2 class="section-title">Contact Me</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                <p style="margin-bottom: 20px;">If you have any teaching opportunities, tutoring inquiries, or professional positions, feel free to reach out to me.</p>
+                
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:khanzaraa527@gmail.com">khanzaraa527@gmail.com</a>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:03473005538">03473005538</a>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Karachi, Pakistan</span>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/khan-zara-328b88411" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i> LinkedIn Profile</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Bibi Zara. All Rights Reserved. Built with ❤️.</p>
+    </footer>
+
+    <script>
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = themeToggleBtn.querySelector('i');
+
+        // Default to dark theme for glowing effect
+        document.documentElement.setAttribute('data-theme', 'dark');
+        
+        // Check if user has a preference saved in local storage
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme) {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            if (currentTheme === 'light') {
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            }
+        }
+
+        // Toggle Theme Function
+        themeToggleBtn.addEventListener('click', () => {
+            let theme = document.documentElement.getAttribute('data-theme');
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
+</body>
+</html>
